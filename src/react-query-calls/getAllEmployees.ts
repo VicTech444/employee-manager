@@ -11,7 +11,7 @@ const fetchData = async () => {
     throw new Error('Not users found');
 }
 
-export const getAllEmployees = () => {
+export const useAllEmployees = () => {
     const queryEmployees = useQuery({
         queryKey: ['employees-list'],
         queryFn: fetchData,

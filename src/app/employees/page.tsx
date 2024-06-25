@@ -4,11 +4,11 @@ import Navbar from "@/components/NavBar";
 import Header from "@/components/Header";
 import EmployeeList from "@/components/EmployeeList";
 import { FaSpinner } from "react-icons/fa";
-import { getAllEmployees } from "@/react-query-calls/getAllEmployees";
+import { useAllEmployees } from "@/react-query-calls/getAllEmployees";
 import { useHandlePermissions } from "@/hooks/usePermissions";
 
 export default function ListEmployee() {
-  let { queryEmployees } = getAllEmployees();
+  let { queryEmployees } = useAllEmployees();
 
   return (
     <div>
