@@ -9,7 +9,6 @@ export const middleware = async (req: NextRequest) => {
     let { pathname } = req.nextUrl
 
     let protectedRoutes = ["/employees", "/settings", "/add-employee"];
-    let notProtectedRoutes = ["/"];
 
     if (protectedRoutes.includes(pathname)) {
         if (!jwtCookie) {
@@ -17,7 +16,7 @@ export const middleware = async (req: NextRequest) => {
         }
 
         try {
-            let validate = await jwtVerify(jwtCookie.value, new TextEncoder().encode(process.env.JWT_SECRET));
+            let validate = await jwtVerify(jwtCookie.value, new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET));
 
             if (pathname === '/employees' || pathname === '/add-employee') {
                 let { role } = validate.payload
@@ -26,6 +25,7 @@ export const middleware = async (req: NextRequest) => {
                     return NextResponse.redirect(new URL('/settings', req.url))
                 }
             }
+
         } catch (error) {
             let serialCookie = cookieNPM.serialize("login", "invalid login cookie", {
                 maxAge: 0
@@ -38,5 +38,5 @@ export const middleware = async (req: NextRequest) => {
         }
     }
 
-    NextResponse.next()
+    return NextResponse.next();
 }

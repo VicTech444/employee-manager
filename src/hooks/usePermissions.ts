@@ -23,15 +23,6 @@ export const useHandlePermissions = () => {
             return;
         }
 
-        const { role } = decoded;
-
-        if (role != 1 && role != 2) {
-            navigate.push("/");
-        } else if (role === 1) {
-            navigate.push("/");
-        } else if (role !== 2) {
-            navigate.push("/");
-        }
     }, []);
 
     return { data, cookie }

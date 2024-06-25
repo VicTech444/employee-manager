@@ -44,12 +44,11 @@ export const useHandlePersonalInfo = (cookie: string) => {
     const data = useQuery({
         queryKey: ['personal_info'],
         queryFn: () => fetchData(newData),
-        staleTime: 1000 * 60 * 60 * 24,
+        staleTime: 0,
         refetchOnReconnect: false,
         refetchOnWindowFocus: false,
         retry: false,
-        refetchOnMount: false,
+        refetchOnMount: true,
     });
-
     return { data }
 };

@@ -1,5 +1,5 @@
 import { callInstance } from "../react-query-calls/axiosBase";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
 interface formProps {
@@ -35,7 +35,7 @@ export default function Login() {
     });
 
     if (res.status >= 200 && res.status <= 299){
-      navigate.push('/employees')
+      navigate.push('/settings')
     }
   };
   return (
