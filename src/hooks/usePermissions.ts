@@ -1,16 +1,16 @@
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { useHandleLogin } from "../react-query-calls";
 import { useEffect } from "react";
 import { jwtResponse } from "../interfaces/interfaces";
 import { jwtDecode } from "jwt-decode";
 
 export const useHandlePermissions = () => {
-    let navigate = useNavigate();
+    let navigate = useRouter();
     let { data, cookie } = useHandleLogin();
-
+    
     useEffect(() => {
         if (data.error || !cookie) {
-            navigate("/");
+            navigate.push("/");
             return
         }
         
@@ -19,18 +19,18 @@ export const useHandlePermissions = () => {
             decoded = jwtDecode(cookie);
         } catch (error) {
             console.error("Error decoding JWT:", error);
-            navigate("/");
+            navigate.push("/");
             return;
         }
 
         const { role } = decoded;
 
         if (role != 1 && role != 2) {
-            navigate("/");
+            navigate.push("/");
         } else if (role === 1) {
-            navigate("/settings");
+            navigate.push("/");
         } else if (role !== 2) {
-            navigate("/");
+            navigate.push("/");
         }
     }, []);
 

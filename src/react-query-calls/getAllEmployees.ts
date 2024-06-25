@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { callInstance } from "./axiosBase";
 
 const fetchData = async () => {
-    let res = await callInstance.get('/employee/get_all');
+    let res = await callInstance.get('/employee');
 
     if (res.status >= 200 && res.status <= 299) {
         return res.data;

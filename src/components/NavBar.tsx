@@ -22,16 +22,16 @@ export default function Navbar() {
   if (Date.now() >= exp * 1000) {
     return <NormalUserNav />;
   }
-  
+
   return (
-    <nav>
-      {role === 1 ? (
-        <EmployeeNav />
-      ) : role === 2 ? (
-        <ManagerNav />
-      ) : (
-        <NormalUserNav />
-      )}
-    </nav>
+      <nav>
+        {role === 1 ? (
+          <EmployeeNav />
+        ) : role === 2 ? (
+          <ManagerNav />
+        ) : (
+          <NormalUserNav />
+        )}
+      </nav>
   );
 }

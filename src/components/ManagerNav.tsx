@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { callInstance } from "../react-query-calls/axiosBase";
 
 export default function ManagerNav() {

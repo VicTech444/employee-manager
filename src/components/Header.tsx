@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 
 export default function Header() {
     let path = usePathname();
-
     let msg = navList.filter(list => list.path === path);
 
     return (

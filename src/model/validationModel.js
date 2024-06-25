@@ -2,7 +2,7 @@ import { supabase } from "../db/supabase.js";
 import jwt from 'jsonwebtoken';
 import 'dotenv/config.js'
 
-export class validationModel {
+export default class validationModel {
     static async validateEmployee (body) {
         if (!body) return false;
 

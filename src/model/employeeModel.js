@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import 'dotenv/config.js'
 import bcrypt from 'bcrypt'
 
-export class employeeModel {
+export default class employeeModel {
     static async getAllEmployees () {
         try {
         let {data, error} = await supabase.from('employees').select('first_name,last_name,email,phone_number,role_id');
