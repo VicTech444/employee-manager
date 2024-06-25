@@ -4,34 +4,51 @@ import NormalUserNav from "./NormalUserNav";
 import EmployeeNav from "./EmployeeNav";
 import ManagerNav from "./ManagerNav";
 import { jwtResponse } from "../interfaces/interfaces";
+import { use, useEffect, useState } from "react";
 
 export default function Navbar() {
-  let cookie = useCookies();
-  if (!cookie) return <NormalUserNav />;
+  let [navbarState, setNavBarState] = useState<null | number>(null);
 
-  let decoded: jwtResponse;
-  try {
-    decoded = jwtDecode(cookie);
-  } catch (error) {
-    console.error("Error decoding JWT:", error);
-    return <NormalUserNav />;
-  }
+  useEffect(() => {
+    const useValidation = () => {
+      let cookie = useCookies();
+      if (!cookie) {
+        setNavBarState(null);
+        return;
+      }
 
-  const { role, exp } = decoded;
+      let decoded: jwtResponse;
+      try {
+        decoded = jwtDecode(cookie);
+      } catch (error) {
+        console.error("Error decoding JWT:", error);
+        setNavBarState(null);
+        return;
+      }
 
-  if (Date.now() >= exp * 1000) {
-    return <NormalUserNav />;
-  }
+      const { role, exp } = decoded;
+
+      if (Date.now() >= exp * 1000) {
+        setNavBarState(null);
+        return
+      }
+
+      if (role == 1) setNavBarState(1);
+      if (role == 2) setNavBarState(2)
+    };
+
+    useValidation();
+  }, []);
 
   return (
-      <nav>
-        {role === 1 ? (
-          <EmployeeNav />
-        ) : role === 2 ? (
-          <ManagerNav />
-        ) : (
-          <NormalUserNav />
-        )}
-      </nav>
+    <nav>
+      {navbarState === 1 ? (
+        <EmployeeNav />
+      ) : navbarState === 2 ? (
+        <ManagerNav />
+      ) : (
+        <NormalUserNav />
+      )}
+    </nav>
   );
 }

@@ -2,19 +2,16 @@ import { callInstance } from "../react-query-calls/axiosBase";
 
 export default function ManagerNav() {
   const handleLogout = async () => {
-    let res = await callInstance.post('/logout', "", {
-      withCredentials: true
-    });
-
-    if (res.status >= 200 && res.status <= 299) {
-      window.location.reload()
-    }
-  }
+    await callInstance.post("/logout");
+  };
 
   return (
+    <nav>
       <ul>
         <li>
-          <a href="/" onClick={handleLogout}>Logout</a>
+          <a href="/" onClick={handleLogout}>
+            Logout
+          </a>
         </li>
         <li>
           <a href="/settings">Settings</a>
@@ -26,5 +23,6 @@ export default function ManagerNav() {
           <a href="/add-employee">Add Employee</a>
         </li>
       </ul>
+    </nav>
   );
 }
