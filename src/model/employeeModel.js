@@ -24,7 +24,7 @@ export default class employeeModel {
         .eq('email', email)
         .eq('first_name', userName)
         .eq('role_id', role)
-
+   
         if (error) return false;
    
         return data

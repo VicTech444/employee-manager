@@ -10,7 +10,7 @@ interface userInfo {
 }
 
 const fetchData = async (data: userInfo) => {
-    let res = await callInstance.post('/employee/personal_info', data, {
+    let res = await callInstance.post('/employee', data, {
         headers: {
             "Content-Type": "application/json"
         },

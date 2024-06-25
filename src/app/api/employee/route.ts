@@ -11,11 +11,12 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-    let response = await employeeModel.getEmployee(req.body);
+    let {email, userName, role} = await req.json()
+    let response = await employeeModel.getEmployee({email, userName, role});
 
     if (!response) {
         return Response.json({message: "User was not found"}, {status: 400})
     }
 
-    Response.json({ message: response })
+    return Response.json({ message: response })
 }
