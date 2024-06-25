@@ -15,16 +15,16 @@ export default function ManagerNav() {
   return (
       <ul>
         <li>
-          <Link to="/" onClick={handleLogout}>Logout</Link>
+          <a href="/" onClick={handleLogout}>Logout</a>
         </li>
         <li>
-          <Link to="/settings">Settings</Link>
+          <a href="/settings">Settings</a>
         </li>
         <li>
-          <Link to="/employees">Employees</Link>
+          <a href="/employees">Employees</a>
         </li>
         <li>
-          <Link to="/add-employee">Add Employee</Link>
+          <a href="/add-employee">Add Employee</a>
         </li>
       </ul>
   );

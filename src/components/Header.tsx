@@ -1,8 +1,9 @@
 import { useLocation } from "react-router-dom";
 import { navList } from "../helpers/navList";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
-    let path = useLocation().pathname;
+    let path = usePathname();
 
     let msg = navList.filter(list => list.path === path);
 

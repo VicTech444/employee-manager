@@ -1,6 +1,6 @@
 import { callInstance } from "../react-query-calls/axiosBase";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 interface formProps {
   email: string;
@@ -8,7 +8,7 @@ interface formProps {
 }
 
 export default function Login() {
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -35,17 +35,9 @@ export default function Login() {
     });
 
     if (res.status >= 200 && res.status <= 299){
-      navigate('/employees')
+      navigate.push('/employees')
     }
   };
-
-  useEffect(() => {
-    const test = async () => {
-      let res = await callInstance.get('/testing');
-      console.log(res)
-    }
-    test()
-  },[])
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="email">Email:</label>

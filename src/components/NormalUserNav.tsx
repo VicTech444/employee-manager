@@ -5,7 +5,7 @@ export default function NormalUserNav() {
     <nav>
       <ul>
         <li>
-          <Link to="/">Login</Link>
+          <a href="/">Login</a>
         </li>
       </ul>
     </nav>
