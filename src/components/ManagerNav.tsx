@@ -1,4 +1,5 @@
 import { callInstance } from "../react-query-calls/axiosBase";
+import Link from "next/link";
 
 export default function ManagerNav() {
   const handleLogout = async () => {
@@ -9,18 +10,18 @@ export default function ManagerNav() {
     <nav>
       <ul>
         <li>
-          <a href="/" onClick={handleLogout}>
+          <Link href="/" onClick={handleLogout}>
             Logout
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/settings">Settings</a>
+          <Link href="/settings">Settings</Link>
         </li>
         <li>
-          <a href="/employees">Employees</a>
+          <Link href="/employees">Employees</Link>
         </li>
         <li>
-          <a href="/add-employee">Add Employee</a>
+          <Link href="/add-employee">Add Employee</Link>
         </li>
       </ul>
     </nav>

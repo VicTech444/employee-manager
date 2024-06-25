@@ -10,12 +10,12 @@ export default function EmployeeNav() {
     <nav>
       <ul>
         <li>
-          <a href="/" onClick={handleLogout}>
+          <Link to="/" onClick={handleLogout}>
             Logout
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/settings">Settings</a>
+          <Link to="/settings">Settings</Link>
         </li>
       </ul>
     </nav>

@@ -1,9 +1,8 @@
 import { supabase } from "../db/supabase.js";
-import jwt from 'jsonwebtoken';
 import 'dotenv/config.js'
 import bcrypt from 'bcrypt'
 
-export class signEmployeeModel {
+export default class signEmployeeModel {
     static async signEmployee (body) {
         let {firstName, lastName, email, phone, password, roleId} = body;
         let salts = await bcrypt.genSalt(10);

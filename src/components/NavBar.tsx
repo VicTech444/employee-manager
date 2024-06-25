@@ -4,7 +4,7 @@ import NormalUserNav from "./NormalUserNav";
 import EmployeeNav from "./EmployeeNav";
 import ManagerNav from "./ManagerNav";
 import { jwtResponse } from "../interfaces/interfaces";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   let [navbarState, setNavBarState] = useState<null | number>(null);

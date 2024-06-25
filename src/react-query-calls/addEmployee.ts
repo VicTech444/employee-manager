@@ -52,7 +52,7 @@ export const useHandleAddEmploy = () => {
         if (res instanceof AxiosError) {
             setNotification({
                 type: 'error',
-                message: `An error has been occured while creating the user: ( ${res.response?.data.message} )`
+                message: `An error has been occured while creating the user: ( Try again later or in a few moments... )`
             });
 
             setTimeout(() => {
