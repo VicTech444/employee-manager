@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { callInstance } from "../react-query-calls/axiosBase";
 
 export default function EmployeeNav() {
@@ -10,12 +10,12 @@ export default function EmployeeNav() {
     <nav>
       <ul>
         <li>
-          <Link to="/" onClick={handleLogout}>
+          <Link href="/" onClick={handleLogout}>
             Logout
           </Link>
         </li>
         <li>
-          <Link to="/settings">Settings</Link>
+          <Link href="/settings">Settings</Link>
         </li>
       </ul>
     </nav>
