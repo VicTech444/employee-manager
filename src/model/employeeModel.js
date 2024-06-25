@@ -1,7 +1,5 @@
 import { supabase } from "../db/supabase.js";
-import jwt from 'jsonwebtoken';
 import 'dotenv/config.js'
-import bcrypt from 'bcrypt'
 
 export default class employeeModel {
     static async getAllEmployees () {

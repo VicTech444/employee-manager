@@ -25,7 +25,7 @@ export default class loginEmployeeModel {
                 email,
                 userName: 'FakeName',
                 role: 2
-            }, process.env.JWT_SECRET);
+            }, process.env.NEXT_PUBLIC_JWT_SECRET);
 
             return token;
         }
@@ -45,7 +45,7 @@ export default class loginEmployeeModel {
             email: data[0].email,
             userName: data[0].first_name,
             role: data[0].role_id
-        }, process.env.JWT_SECRET);
+        }, process.env.NEXT_PUBLIC_JWT_SECRET);
 
         return token
     }
