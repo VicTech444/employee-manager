@@ -1,10 +1,11 @@
 import validationModel from '@/model/validationModel'
 import Cookie from 'cookie'
+import { cookies } from 'next/headers';
 
-export async function POST(req: Request) {
-    let { cookies } = await req.json()
-
-    let validation = await validationModel.validateEmployee(cookies);
+export async function POST() {
+    let loginCookie = cookies().get('login');
+    console.log(loginCookie)
+    let validation = await validationModel.validateEmployee(loginCookie?.value);
 
     if (!validation) {
         let serialized = Cookie.serialize('login', "", {

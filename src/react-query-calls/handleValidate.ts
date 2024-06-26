@@ -4,17 +4,8 @@ import { getCookies } from "../hooks/useCookies";
 
 type cookieProps = string | boolean;
 
-const fetchData = async (cookie: cookieProps) => {
-    let body = {
-        cookies: cookie
-    }
-
-    let res = await callInstance.post('/validate', body, {
-        headers: {
-            "Content-Type": "application/json"
-        },
-        withCredentials: true
-    });
+const fetchData = async () => {
+    let res = await callInstance.post('/validate');
 
     if (res.status >= 200 && res.status <= 299) {
         return res.data;
@@ -29,7 +20,7 @@ export const useHandleLogin = () => {
 
     const data = useQuery({
         queryKey: ['login'],
-        queryFn: () => fetchData(cookie),
+        queryFn: () => fetchData(),
         staleTime: 1000 * 60 * 60 * 24,
         refetchOnReconnect: false,
         refetchOnWindowFocus: false,

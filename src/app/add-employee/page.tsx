@@ -7,11 +7,9 @@ import Notification from "@/components/Notification";
 import { useState } from "react";
 import { NotifyContext } from "@/context/NotificationContext";
 import { notifyProps } from "@/interfaces/interfaces";
-import { useHandlePermissions } from "@/hooks/usePermissions";
 
 export default function AddEmployee() {
   const [notification, setNotification] = useState<notifyProps | null>(null);
-  useHandlePermissions();
 
   return (
     <div>
