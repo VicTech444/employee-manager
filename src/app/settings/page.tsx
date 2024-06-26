@@ -16,7 +16,7 @@ interface Props {
 
 export default function Settings() {
   const userInformation = useHandlePersonalInfo();
-
+  
   return (
     <div>
       <Navbar />
@@ -27,7 +27,7 @@ export default function Settings() {
         ) : userInformation.isLoading ? (
           <FaSpinner className="h-6 w-6 animate-spin" />
         ) : (
-          <UserInformation {...userInformation.data} />
+          <UserInformation {...userInformation.data.message[0]} />
         )}
       </div>
     </div>
