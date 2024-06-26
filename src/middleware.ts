@@ -9,7 +9,7 @@ export const middleware = async (req: NextRequest) => {
     let { pathname } = req.nextUrl
 
     let protectedRoutes = ["/employees", "/settings", "/add-employee"];
-
+    console.log('Testing log')
     if (protectedRoutes.includes(pathname)) {
         if (!jwtCookie) {
             return NextResponse.redirect(new URL('/', req.url))
