@@ -1,10 +1,7 @@
-import { callInstance } from "../react-query-calls/axiosBase";
+import { handleLogout } from "@/helpers/handleLogout";
 import Link from "next/link";
 
 export default function ManagerNav() {
-  const handleLogout = async () => {
-    await callInstance.post("/logout");
-  };
 
   return (
     <nav>
