@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { callInstance } from "./axiosBase";
-import { useCookies } from "../hooks/useCookies";
+import { getCookies } from "../hooks/useCookies";
 
 type cookieProps = string | boolean;
 
@@ -25,7 +25,7 @@ const fetchData = async (cookie: cookieProps) => {
 
 
 export const useHandleLogin = () => {
-    let cookie = useCookies();
+    let cookie = getCookies();
 
     const data = useQuery({
         queryKey: ['login'],

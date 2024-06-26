@@ -1,3 +1,3 @@
 export { useHandleAddEmploy } from "./addEmployee";
-export { getAllEmployees } from "./getAllEmployees";
+export { useAllEmployees } from "./getAllEmployees";
 export { useHandleLogin } from "./handleValidate";
