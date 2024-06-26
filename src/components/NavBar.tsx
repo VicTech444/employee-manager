@@ -10,7 +10,6 @@ export default function Navbar() {
   let [navbarState, setNavBarState] = useState<null | number>(null);
 
   useEffect(() => {
-    const validation = () => {
       let cookie = useCookies();
       if (!cookie) {
         setNavBarState(null);
@@ -35,9 +34,7 @@ export default function Navbar() {
 
       if (role == 1) setNavBarState(1);
       if (role == 2) setNavBarState(2)
-    };
-
-    validation();
+    
   }, []);
 
   return (
