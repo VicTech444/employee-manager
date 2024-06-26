@@ -8,27 +8,37 @@ import { useHandlePersonalInfo } from "@/react-query-calls/getPersonalInfo";
 import { FaSpinner } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
+interface Props {
+  email: string;
+  first_name: string;
+  last_name: string;
+  phone_number: string;
+}
+
 export default function Settings() {
-  let [data, setData] = useState(null);
-  let { cookie } = useHandlePermissions();
-  let userInformation = useHandlePersonalInfo(cookie as string);
+  const [data, setData] = useState<Props | null>(null);
+  const { cookie } = useHandlePermissions();
+  const { data: userInfo, error, isLoading } = useHandlePersonalInfo(cookie as string);
 
   useEffect(() => {
-    if (!userInformation?.data.isFetching) {
-      setData(userInformation?.data.data.message[0]);
-      return;
+    if (!isLoading && userInfo) {
+      setData(userInfo.message[0]);
     }
-  }, [userInformation?.data.data, userInformation?.data.isFetching]);
+  }, [userInfo, isLoading]);
+
+  if (error) {
+    return <div>Error loading data: {error.message}</div>;
+  }
 
   return (
     <div>
       <Navbar />
       <Header />
       <div className="container flex flex-col gap-y-4">
-        {!data ? (
+        {isLoading || !userInfo ? (
           <FaSpinner className="h-6 w-6 animate-spin" />
         ) : (
-          <UserInformation {...userInformation?.data.data.message[0]} />
+          <UserInformation {...data!} />
         )}
       </div>
     </div>

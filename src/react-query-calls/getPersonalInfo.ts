@@ -43,5 +43,6 @@ export const useHandlePersonalInfo = (cookie: string) => {
         retry: false,
         refetchOnMount: true,
     });
-    return { data }
+    
+    return { data: data.data, error: data.error, isLoading: data.isLoading }
 };
