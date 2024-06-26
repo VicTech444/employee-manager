@@ -23,7 +23,7 @@ export const useHandlePermissions = () => {
             return;
         }
 
-    }, []);
+    }, [data.error, cookie]);
 
     return { data, cookie }
 }

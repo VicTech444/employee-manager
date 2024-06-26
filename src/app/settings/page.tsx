@@ -18,7 +18,7 @@ export default function Settings() {
       setData(userInformation?.data.data.message[0]);
       return;
     }
-  }, [userInformation?.data.data]);
+  }, [userInformation?.data.data, userInformation?.data.isFetching]);
 
   return (
     <div>
