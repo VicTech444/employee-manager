@@ -24,31 +24,30 @@ const fetchData = async (data: userInfo) => {
 }
 
 
-export const useHandlePersonalInfo = (cookie: string) => {
-    let decoded: jwtResponse;
+export const useHandlePersonalInfo = (cookie: string) => { 
     try {
+        let decoded: jwtResponse;
         decoded = jwtDecode(cookie);
+        const { role, email, userName } = decoded;
+
+        let newData = {
+            email,
+            userName,
+            role
+        }
+
+        const data = useQuery({
+            queryKey: ['personal_info'],
+            queryFn: () => fetchData(newData),
+            staleTime: 0,
+            refetchOnReconnect: false,
+            refetchOnWindowFocus: false,
+            retry: false,
+            refetchOnMount: true,
+        });
+        return { data }
     } catch (error) {
         console.error("Error decoding JWT:", error);
-        return;
+        throw new Error('An error has been occured while getting personal info')
     }
-
-    const { role, email, userName } = decoded;
-
-    let newData = {
-        email,
-        userName,
-        role
-    }
-
-    const data = useQuery({
-        queryKey: ['personal_info'],
-        queryFn: () => fetchData(newData),
-        staleTime: 0,
-        refetchOnReconnect: false,
-        refetchOnWindowFocus: false,
-        retry: false,
-        refetchOnMount: true,
-    });
-    return { data }
 };
