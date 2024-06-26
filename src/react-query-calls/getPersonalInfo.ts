@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { callInstance } from "./axiosBase";
 import { jwtResponse } from "../interfaces/interfaces";
 import { jwtDecode } from "jwt-decode";
+import { useHandlePermissions } from "@/hooks/usePermissions";
 
 interface userInfo {
     email: string;
@@ -9,8 +10,20 @@ interface userInfo {
     role: number;
 }
 
-const fetchData = async (data: userInfo) => {
-    let res = await callInstance.post('/employee', data, {
+const fetchData = async (data: string | false) => {
+    if (data === false) throw new Error('No cookies found');
+    
+    let decoded: jwtResponse = jwtDecode(data);
+
+    const { role, email, userName } = decoded;
+
+    let newData : userInfo = {
+        email,
+        userName,
+        role
+    }
+
+    let res = await callInstance.post('/employee', newData, {
         headers: {
             "Content-Type": "application/json"
         },
@@ -24,26 +37,18 @@ const fetchData = async (data: userInfo) => {
 }
 
 
-export const useHandlePersonalInfo = (cookie: string) => {
-    if (!cookie) return;
-    let decoded: jwtResponse = jwtDecode(cookie);
+export const useHandlePersonalInfo = () => {
+    const { cookie } = useHandlePermissions();
 
-    const { role, email, userName } = decoded;
-
-    let newData = {
-        email,
-        userName,
-        role
-    }
     const data = useQuery({
         queryKey: ['personal_info'],
-        queryFn: () => fetchData(newData),
+        queryFn: () => fetchData(cookie),
         staleTime: 0,
         refetchOnReconnect: false,
         refetchOnWindowFocus: false,
         retry: false,
         refetchOnMount: true,
     });
-    
+
     return { data: data.data, error: data.error, isLoading: data.isLoading }
 };

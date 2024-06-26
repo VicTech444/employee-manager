@@ -6,7 +6,6 @@ import { useHandlePermissions } from "@/hooks/usePermissions";
 import UserInformation from "@/components/UserInformation";
 import { useHandlePersonalInfo } from "@/react-query-calls/getPersonalInfo";
 import { FaSpinner } from "react-icons/fa";
-import { Suspense, useEffect, useState } from "react";
 
 interface Props {
   email: string;
@@ -16,8 +15,7 @@ interface Props {
 }
 
 export default function Settings() {
-  const { cookie } = useHandlePermissions();
-  const userInformation = useHandlePersonalInfo(cookie as string);
+  const userInformation = useHandlePersonalInfo();
 
   return (
     <div>
