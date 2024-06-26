@@ -16,37 +16,21 @@ interface Props {
 }
 
 export default function Settings() {
-  const [data, setData] = useState<Props | null>(null);
   const { cookie } = useHandlePermissions();
   const userInformation = useHandlePersonalInfo(cookie as string);
-
-  if (!userInformation) return <h1>No content available</h1>;
-
-  let {data: userInfo, error, isLoading} = userInformation
-  useEffect(() => {
-    if (!isLoading && userInfo) {
-      setData(userInfo.message[0]);
-    }
-  }, [userInfo, isLoading]);
-
-  if (error) {
-    return <div>Error loading data: {error.message}</div>;
-  }
 
   return (
     <div>
       <Navbar />
       <Header />
       <div className="container flex flex-col gap-y-4">
-        <Suspense fallback={<h1>Loading</h1>}>
-          {isLoading ? (
-            <FaSpinner className="h-6 w-6 animate-spin" />
-          ) : userInfo ? (
-            <UserInformation {...data!} />
-          ) : (
-            <h1>No data available</h1>
-          )}
-        </Suspense>
+        {!userInformation ? (
+          <h1>No content available</h1>
+        ) : userInformation.isLoading ? (
+          <FaSpinner className="h-6 w-6 animate-spin" />
+        ) : (
+          <UserInformation {...userInformation.data} />
+        )}
       </div>
     </div>
   );
