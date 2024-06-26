@@ -9,15 +9,16 @@ export const middleware = async (req: NextRequest) => {
     let { pathname } = req.nextUrl
 
     let protectedRoutes = ["/employees", "/settings", "/add-employee"];
-    console.log('Testing log')
+    
     if (protectedRoutes.includes(pathname)) {
+        console.log(jwtCookie)
         if (!jwtCookie) {
             return NextResponse.redirect(new URL('/', req.url))
         }
 
         try {
             let validate = await jwtVerify(jwtCookie.value, new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET));
-
+            console.log(validate)
             if (pathname === '/employees' || pathname === '/add-employee') {
                 let { role } = validate.payload
 
@@ -27,6 +28,7 @@ export const middleware = async (req: NextRequest) => {
             }
 
         } catch (error) {
+            console.log(error)
             let serialCookie = cookieNPM.serialize("login", "invalid login cookie", {
                 maxAge: 0
             })
