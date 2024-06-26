@@ -1,4 +1,4 @@
-import { useCookies } from "../hooks/useCookies";
+import { getCookies } from "../hooks/useCookies";
 import { jwtDecode } from "jwt-decode";
 import NormalUserNav from "./NormalUserNav";
 import EmployeeNav from "./EmployeeNav";
@@ -10,7 +10,7 @@ export default function Navbar() {
   let [navbarState, setNavBarState] = useState<null | number>(null);
 
   useEffect(() => {
-      let cookie = useCookies();
+      let cookie = getCookies();
       if (!cookie) {
         setNavBarState(null);
         return;
