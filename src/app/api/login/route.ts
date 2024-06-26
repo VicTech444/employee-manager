@@ -8,6 +8,7 @@ export async function POST(req: Request, res: Response) {
     let newData = await validateEmployeeCredentials({ email, password });
 
     if (!newData.success) {
+        console.log(newData.error)
         return Response.json({ message: newData.error.message }, {
             status: 400
         })

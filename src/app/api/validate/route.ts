@@ -19,6 +19,6 @@ export async function POST(req: Request) {
             }
         })
     }
-    console.log(cookies)
+    
     return Response.json({ message: "Validation success" })
 }
