@@ -7,7 +7,7 @@ export default class validationModel {
         if (!body) return false;
 
         try {
-            let validation = jwt.verify(body, process.env.NEXT_PUBLIC_JWT_SECRET);
+            let validation = await jwt.verify(body, process.env.NEXT_PUBLIC_JWT_SECRET);
 
             let {email, userName} = validation;
 
