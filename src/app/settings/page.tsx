@@ -6,7 +6,7 @@ import { useHandlePermissions } from "@/hooks/usePermissions";
 import UserInformation from "@/components/UserInformation";
 import { useHandlePersonalInfo } from "@/react-query-calls/getPersonalInfo";
 import { FaSpinner } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 interface Props {
   email: string;
@@ -18,7 +18,11 @@ interface Props {
 export default function Settings() {
   const [data, setData] = useState<Props | null>(null);
   const { cookie } = useHandlePermissions();
-  const { data: userInfo, error, isLoading } = useHandlePersonalInfo(cookie as string);
+  const {
+    data: userInfo,
+    error,
+    isLoading,
+  } = useHandlePersonalInfo(cookie as string);
 
   useEffect(() => {
     if (!isLoading && userInfo) {
@@ -35,11 +39,13 @@ export default function Settings() {
       <Navbar />
       <Header />
       <div className="container flex flex-col gap-y-4">
-        {isLoading || !userInfo ? (
-          <FaSpinner className="h-6 w-6 animate-spin" />
-        ) : (
-          <UserInformation {...data!} />
-        )}
+        <Suspense fallback={<h1>Loading</h1>}>
+          {isLoading || !userInfo ? (
+            <FaSpinner className="h-6 w-6 animate-spin" />
+          ) : (
+            <UserInformation {...data!} />
+          )}
+        </Suspense>
       </div>
     </div>
   );
