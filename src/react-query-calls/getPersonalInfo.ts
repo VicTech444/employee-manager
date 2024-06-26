@@ -25,6 +25,7 @@ const fetchData = async (data: userInfo) => {
 
 
 export const useHandlePersonalInfo = (cookie: string) => {
+    if (!cookie) return;
     let decoded: jwtResponse = jwtDecode(cookie);
 
     const { role, email, userName } = decoded;

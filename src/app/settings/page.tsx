@@ -18,12 +18,11 @@ interface Props {
 export default function Settings() {
   const [data, setData] = useState<Props | null>(null);
   const { cookie } = useHandlePermissions();
-  const {
-    data: userInfo,
-    error,
-    isLoading,
-  } = useHandlePersonalInfo(cookie as string);
+  const userInformation = useHandlePersonalInfo(cookie as string);
 
+  if (!userInformation) return <h1>No content available</h1>;
+
+  let {data: userInfo, error, isLoading} = userInformation
   useEffect(() => {
     if (!isLoading && userInfo) {
       setData(userInfo.message[0]);
