@@ -40,10 +40,12 @@ export default function Settings() {
       <Header />
       <div className="container flex flex-col gap-y-4">
         <Suspense fallback={<h1>Loading</h1>}>
-          {isLoading || !userInfo ? (
+          {isLoading ? (
             <FaSpinner className="h-6 w-6 animate-spin" />
-          ) : (
+          ) : userInfo ? (
             <UserInformation {...data!} />
+          ) : (
+            <h1>No data available</h1>
           )}
         </Suspense>
       </div>
