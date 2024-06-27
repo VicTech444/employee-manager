@@ -15,11 +15,11 @@ export default function EmployeeList({
     <table>
       <thead>
         <tr>
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Correo Electrónico</th>
-          <th>Teléfono</th>
-          <th>Rol</th>
+          <th>Name</th>
+          <th>Last Name</th>
+          <th>Email Address</th>
+          <th>Phone number</th>
+          <th>Role</th>
         </tr>
       </thead>
       <tbody>
