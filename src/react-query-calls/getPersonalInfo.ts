@@ -22,7 +22,7 @@ const fetchData = async (data: string | false) => {
         userName,
         role
     }
-
+    
     let res = await callInstance.post('/employee', newData, {
         headers: {
             "Content-Type": "application/json"
