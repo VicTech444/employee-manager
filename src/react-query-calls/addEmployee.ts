@@ -13,7 +13,9 @@ interface formProps {
 }
 const fetchData = async (formData: formProps): Promise<AxiosResponse<any, any> | AxiosError<any, any>> => {
     try {
-        let res = await callInstance.post('/sign', formData, {
+        // Making registering employees unavailable
+        throw new Error('This option is only available when not using a sample account');
+        /* let res = await callInstance.post('/sign', formData, {
             headers: {
                 "Content-Type": "application/json"
             },
@@ -22,10 +24,9 @@ const fetchData = async (formData: formProps): Promise<AxiosResponse<any, any> |
         if (res.status >= 200 && res.status <= 299) {
             return res;
         }
-
-        throw new Error('An error has been occured while creating the user');
-    } catch (error) {
-        return error as AxiosError
+        */     
+    } catch (error: any) {
+        return error
     }
 }
 
@@ -36,7 +37,6 @@ export const useHandleAddEmploy = () => {
     const handleAddEmploy = async (formData: formProps) => {
         let res = await fetchData(formData);
         let { setNotification } = notifyContext!;
-
         if (res.status! >= 200 && res.status! <= 299) {
             setNotification({
                 type: 'success',
@@ -49,10 +49,10 @@ export const useHandleAddEmploy = () => {
             return
         }
 
-        if (res instanceof AxiosError) {
+        if (res instanceof Error) {
             setNotification({
                 type: 'error',
-                message: `An error has been occured while creating the user: ( Try again later or in a few moments... )`
+                message: `${res.message}`
             });
 
             setTimeout(() => {

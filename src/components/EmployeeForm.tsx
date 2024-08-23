@@ -35,6 +35,7 @@ export default function EmployeeForm() {
         value={formData.firstName}
         onChange={handleChange}
         required
+        disabled
       />
 
       <label htmlFor="lastName">Last Name:</label>
@@ -45,6 +46,7 @@ export default function EmployeeForm() {
         value={formData.lastName}
         onChange={handleChange}
         required
+        disabled
       />
 
       <label htmlFor="email">Email Address:</label>
@@ -55,6 +57,7 @@ export default function EmployeeForm() {
         value={formData.email}
         onChange={handleChange}
         required
+        disabled
       />
 
       <label htmlFor="password">Password:</label>
@@ -64,6 +67,7 @@ export default function EmployeeForm() {
         name="password"
         value={formData.password}
         onChange={handleChange}
+        disabled
       />
 
       <label htmlFor="phone">Phone number:</label>
@@ -73,6 +77,7 @@ export default function EmployeeForm() {
         name="phone"
         value={formData.phone}
         onChange={handleChange}
+        disabled
       />
 
       <label htmlFor="roleId">Role:</label>

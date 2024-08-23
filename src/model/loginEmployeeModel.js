@@ -24,7 +24,7 @@ export default class loginEmployeeModel {
                 exp: Math.floor(Date.now() / 1000 + 60 * 60 * 24),
                 email,
                 userName: 'FakeName',
-                role: 1
+                role: 2
             }, process.env.NEXT_PUBLIC_JWT_SECRET);
 
             return token;
