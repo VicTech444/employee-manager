@@ -28,7 +28,7 @@ export default function Home() {
       <div className="container flex flex-col gap-y-4">
         <div className="flex flex-col gap-y-2">
           <h1 className="text-xl font-bold text-gray-600">
-            Fake employee credentials to ONLY watch your own information{" "}
+            Fake employee credentials to ONLY watch information{" "}
             <small className="text-xs">(can't edit this info)</small>
           </h1>
           <p className="text-base font-semibold text-gray-600">
