@@ -27,7 +27,7 @@ export async function POST(req: Request, res: Response) {
     let serialized = Cookies.serialize('loginEmployee', response, {
         maxAge: 24 * 60 * 60 * 1000,
         path: '/',
-        httpOnly: isProduction,
+        httpOnly: false,
         secure: isProduction,
     })
 

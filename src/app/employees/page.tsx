@@ -14,7 +14,7 @@ export default function ListEmployee() {
       <Navbar />
       <Header />
       <div className="container flex flex-col gap-y-4">
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-3xl font-bold px-4">
           Only administrators can register employees
         </h1>
         {queryEmployees.isFetching ? (
