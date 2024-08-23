@@ -5,7 +5,7 @@ import cookieNPM from 'cookie'
 
 export const middleware = async (req: NextRequest) => {
     let cookie = cookies()
-    let jwtCookie = cookie.get('login');
+    let jwtCookie = cookie.get('loginEmployee');
     let { pathname } = req.nextUrl
 
     let protectedRoutes = ["/employees", "/settings", "/add-employee"];
@@ -26,7 +26,7 @@ export const middleware = async (req: NextRequest) => {
             }
 
         } catch (error) {            
-            let serialCookie = cookieNPM.serialize("login", "invalid login cookie", {
+            let serialCookie = cookieNPM.serialize("loginEmployee", "invalid login cookie", {
                 maxAge: 0
             })
             return NextResponse.redirect(new URL('/', req.url), {

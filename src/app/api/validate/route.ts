@@ -3,12 +3,12 @@ import Cookie from 'cookie'
 import { cookies } from 'next/headers';
 
 export async function POST() {
-    let loginCookie = cookies().get('login');
-    console.log(loginCookie)
+    let loginCookie = cookies().get('loginEmployee');
+    
     let validation = await validationModel.validateEmployee(loginCookie?.value);
 
     if (!validation) {
-        let serialized = Cookie.serialize('login', "", {
+        let serialized = Cookie.serialize('loginEmployee', "", {
             maxAge: 0,
             path: '/'
         })
