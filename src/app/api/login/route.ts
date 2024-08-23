@@ -24,7 +24,7 @@ export async function POST(req: Request, res: Response) {
 
     const isProduction = process.env.NODE_ENV !== 'production';
 
-    let serialized = Cookies.serialize('login', response, {
+    let serialized = Cookies.serialize('loginEmployee', response, {
         maxAge: 24 * 60 * 60 * 1000,
         path: '/',
         httpOnly: isProduction,

@@ -26,7 +26,7 @@ export default function Navbar() {
     }
 
     const { role, exp } = decoded;
-
+    
     if (Date.now() >= exp * 1000) {
       setNavBarState(null);
       return;
@@ -35,7 +35,7 @@ export default function Navbar() {
     if (role == 1) setNavBarState(1);
     if (role == 2) setNavBarState(2);
   }, []);
-
+ 
   return (
     <nav>
       {navbarState !== 1 && navbarState !== 2 ? (
